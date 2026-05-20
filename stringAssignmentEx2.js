@@ -1,7 +1,17 @@
 //trim functionality 
-let inputWord="    fly me to the moon "
-let wordAfterTrim=inputWord.trim().toString()
-let strArray=wordAfterTrim.split(" ")
-console.log(strArray)
-let lenOfLastWord=strArray[strArray.length-1].length
-console.log(lenOfLastWord)
+
+function lengthOfString(value){
+
+    let afterSplit = value.trim().toString().split(" ")//returns the value after split applied
+
+    let lenOfSplit = afterSplit.length;
+
+    let lastWordlen = afterSplit[lenOfSplit-1].length//gives the length of the lastword
+ 
+    return lastWordlen;
+
+}
+result = lengthOfString("   fly me to the moon  ")
+console.log(result)
+
+
