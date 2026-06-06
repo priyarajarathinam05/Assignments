@@ -1,0 +1,24 @@
+import {test,expect} from '@playwright/test'
+
+test("testing frames", async({page}) => {
+
+    await page.goto("https://www.leafground.com/frame.xhtml")
+    
+    const frames=page.frames()
+    const noofframes=frames.length
+    console.log("Total no of frames",noofframes)//total no of Frames
+//interaction with click me inside frame
+    const locator1= frames[1].locator("id=Click")
+     const beforeclick=await locator1.innerText()
+    await locator1.click()
+    console.log( await locator1.innerText())
+    expect (beforeclick).not.toBe(await locator1.innerText())//assertion for the text changed inside the button 
+
+//interaction with the Nested Frame 
+    const frame1= page.frame({name:"frame2"})
+    const locator2= frame1?.locator("id=Click")
+    const message=locator2?.innerText()
+    locator2?.click();
+     expect (message).not.toBe(await locator2?.innerText())      
+
+})
